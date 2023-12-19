@@ -4,13 +4,13 @@ using namespace std;
 class Stack{
 private:
 int MAX_SIZE,top;
-int arr[0];
+int *arr;
 
 public:
 Stack(int size){
  this->MAX_SIZE=size;
  this->top=-1;
- int arr[MAX_SIZE];
+ arr=new int[MAX_SIZE];
 }
 
 bool isEmpty(){
@@ -47,14 +47,23 @@ void pop(){
       cout<<"The Stack is empty"<<endl;  
     }
     else{
+        cout<<arr[top]<<endl;
         top--;
     }
 }
-void peak(){
-    cout<<"The value pointed by the top is : "<<arr[top];
+void peek(){
+     if(isEmpty()){
+      cout<<"The Stack is empty"<<endl;  
+    }
+    else{
+    cout<<"The value pointed by the top is : "<<arr[top]<<endl;
+    }
 }
 void noOfElement(){
-   cout<<(top+1);
+   cout<<(top+1)<<endl;
+}
+~Stack(){
+    delete[] arr;
 }
 
 };
@@ -73,7 +82,7 @@ int main(){
          cout<<"2. Pop"<<endl;
          cout<<"3. Display"<<endl;
          cout<<"4. No of Element"<<endl;
-         cout<<"5. Peak Element"<<endl;
+         cout<<"5. Peek Element"<<endl;
          cout<<"6. Exit"<<endl<<endl;
          cout<<"Enter your choice"<<endl;
          cin>>choice;
@@ -90,7 +99,7 @@ int main(){
                      break;
              case 4: s.noOfElement();
                      break;
-             case 5: s.peak();
+             case 5: s.peek();
                      break;
              case 6 : status=false;
                      break; 
