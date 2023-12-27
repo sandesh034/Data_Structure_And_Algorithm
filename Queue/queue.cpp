@@ -11,7 +11,7 @@ class Queue{
         arr=new int[MAX_SIZE];
     }
     void enqueue(int value){
-        if((front==-1)&&(rear==-1)){
+        if((front==-1)&&(rear==-1)||(front>rear)){
             front=0;
             rear=0;
             arr[rear]=value;
@@ -26,7 +26,7 @@ class Queue{
     }
 
     void dequeue(){
-        if((front==-1)&&(rear==-1)){
+        if((front==-1)&&(rear==-1)||(front>rear)){
             cout<<"The queue is empty"<<endl;
         }
         else {
