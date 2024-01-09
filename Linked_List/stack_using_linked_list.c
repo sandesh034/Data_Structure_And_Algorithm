@@ -1,47 +1,52 @@
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
+
+
 struct linked_list{
     int data;
     struct linked_list*next;
 };
 typedef struct linked_list Node;
-Node*start =NULL;
+Node*top =NULL;
 
-void insertAtBegining(int value){
-    if(start==NULL){
+
+void push (int value){
+    if(top==NULL){
         Node*newNode=(Node*)malloc(sizeof(Node));
         newNode->data=value;
         newNode->next=NULL;
-        start=newNode;
+        top=newNode;
     }
     else{
         Node*newNode=(Node*)malloc(sizeof(Node));
         newNode->data=value;
-        newNode->next=start;
-        start=newNode;
+        newNode->next=top;
+        top=newNode;
     }
 }
 
 
 
-void deleteFromBegining(){
-    Node*ptr=start;
+void pop(){
+    Node*ptr=top;
     if(ptr==NULL){
-        printf("The linked list is empty\n");
+        printf("The stack is empty\n");
     }
     else if(ptr->next==NULL){
+       printf("The popped element is:\t%d\n",ptr->data);
        free(ptr);
-       start=NULL;  
+       top=NULL;  
     }
-    else{
-        start=ptr->next;
+    else{ 
+        printf("The popped element is:\t%d\n",ptr->data);
+        top=ptr->next;
         free(ptr);
     }
 }
 
 void display(){
-    Node*ptr=start;
+    Node*ptr=top;
     if(ptr==NULL){
         printf("The linked list is empty\n");
         return;
@@ -54,11 +59,11 @@ void display(){
 }
 
 void peek(){
-    if(start==NULL){
-        printf("The linked list is empty\n");
+    if(top==NULL){
+        printf("The stack is empty\n");
     }
     else{
-         printf("The value of peek is:\t%d\n",start->data);
+         printf("The value of peek is:\t%d\n",top->data);
     }
 }
 
@@ -67,8 +72,8 @@ int main(){
   while(1){
        printf("Stack operation\n");
        printf("________________\n");
-       printf("1.Enqueue\n");
-       printf("2.Dequeue\n");
+       printf("1.Push\n");
+       printf("2.Pop\n");
        printf("3.Display\n");
        printf("4.Peek\n");
        printf("5.Exit\n");
@@ -77,15 +82,18 @@ int main(){
        switch (choice){
        case 1: printf("Enter the value to insert:\t");
                scanf("%d",&value);
-               insertAtBegining(value);
+               push(value);
                break;
-      case 2: deleteFromBegining();
+      case 2: pop();
               break;
       case 3: display();
               break;
       case 4: peek();
               break;
       case 5: exit(0);
+              break;
+     default:printf("Enter the valid option\n");
+            break;
        }
   }
  
