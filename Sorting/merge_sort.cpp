@@ -1,13 +1,12 @@
 #include <iostream>
-#include <vector>
 
-void merge(std::vector<int>& arr, int left, int middle, int right) {
+void merge(int arr[], int left, int middle, int right) {
     int n1 = middle - left + 1;
     int n2 = right - middle;
 
     // Create temporary arrays
-    std::vector<int> leftArray(n1);
-    std::vector<int> rightArray(n2);
+    int leftArray[n1];
+    int rightArray[n2];
 
     // Copy data to temporary arrays leftArray[] and rightArray[]
     for (int i = 0; i < n1; i++)
@@ -46,7 +45,7 @@ void merge(std::vector<int>& arr, int left, int middle, int right) {
     }
 }
 
-void mergeSort(std::vector<int>& arr, int left, int right) {
+void mergeSort(int arr[], int left, int right) {
     if (left < right) {
         // Same as (left+right)/2, but avoids overflow for large left and right
         int middle = left + (right - left) / 2;
@@ -61,19 +60,20 @@ void mergeSort(std::vector<int>& arr, int left, int right) {
 }
 
 int main() {
-    std::vector<int> arr = {12, 11, 13, 5, 6, 7};
+    int arr[] = {12, 11, 13, 5, 6, 7};
+    int arrSize = sizeof(arr) / sizeof(arr[0]);
 
     std::cout << "Original array: ";
-    for (int num : arr) {
-        std::cout << num << " ";
+    for (int i = 0; i < arrSize; i++) {
+        std::cout << arr[i] << " ";
     }
     std::cout << "\n";
 
-    mergeSort(arr, 0, arr.size() - 1);
+    mergeSort(arr, 0, arrSize - 1);
 
     std::cout << "Sorted array: ";
-    for (int num : arr) {
-        std::cout << num << " ";
+    for (int i = 0; i < arrSize; i++) {
+        std::cout << arr[i] << " ";
     }
     std::cout << "\n";
 
